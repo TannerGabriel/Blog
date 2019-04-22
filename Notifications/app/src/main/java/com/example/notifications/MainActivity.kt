@@ -80,7 +80,17 @@ class MainActivity : AppCompatActivity() {
             .setVisibility(VISIBILITY_PRIVATE)
             .setPublicVersion(publicBuilder.build())
 
-        createNotification(0, builder)
+        createNotification(2, builder)
+    }
+
+    fun createBadgedNotification(){
+        val builder = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
+            .setContentTitle("Badged Notification")
+            .setContentText("New badged notification")
+            .setSmallIcon(R.drawable.notification_icon)
+            .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+
+        createNotification(3, builder)
     }
 
     fun createNotification(id: Int, builder: NotificationCompat.Builder){
@@ -98,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
+                //setShowBadge(false)
             }
             // Register the channel with the system
             val notificationManager: NotificationManager =
