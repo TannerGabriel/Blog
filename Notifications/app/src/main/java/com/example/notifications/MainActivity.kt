@@ -16,6 +16,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.support.annotation.RequiresApi
 
 
@@ -43,8 +44,20 @@ class MainActivity : AppCompatActivity() {
             createLockScreenNotification()
         }
 
+        notification_badged.setOnClickListener {
+            createBadgedNotification()
+        }
+
         notification_click_action_btn.setOnClickListener {
             createNotificationWithClickAction()
+        }
+
+        notification_action_button_btn.setOnClickListener {
+            createNotificationWithActionButtons()
+        }
+
+        expandable_notification.setOnClickListener {
+            createExpandableNotification()
         }
     }
 
@@ -116,6 +129,46 @@ class MainActivity : AppCompatActivity() {
 
         createNotification(4, builder)
     }
+
+    fun createNotificationWithActionButtons(){
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val builder = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
+            .setContentTitle("Notification with click action")
+            .setContentText("New notification with great click action")
+            .setSmallIcon(R.drawable.notification_icon)
+            .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+            .addAction(R.drawable.notification_icon, "Open Activity",
+                pendingIntent)
+
+        createNotification(5, builder)
+    }
+
+    fun createExpandableNotification(){
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.notification_icon)
+
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.notification_icon)
+            .setContentTitle("Simple expandable notification")
+            .setContentText("Simple notification that can be expended ")
+            .setLargeIcon(bitmap)
+            .setStyle(NotificationCompat.BigPictureStyle()
+                .bigPicture(bitmap)
+                .bigLargeIcon(null))
+
+        /* Add large text
+        .setStyle(NotificationCompat.BigTextStyle()
+                .bigText("Some great big text")
+         */
+
+        createNotification(6, builder)
+    }
+
+
 
     fun createNotification(id: Int, builder: NotificationCompat.Builder){
         with(NotificationManagerCompat.from(this)) {
