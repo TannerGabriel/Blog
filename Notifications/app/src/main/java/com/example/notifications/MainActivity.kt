@@ -13,7 +13,9 @@ import android.annotation.TargetApi
 import android.app.Notification.VISIBILITY_PRIVATE
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.support.annotation.RequiresApi
 
 
@@ -39,6 +41,10 @@ class MainActivity : AppCompatActivity() {
 
         lock_screen_notification_btn.setOnClickListener {
             createLockScreenNotification()
+        }
+
+        notification_click_action_btn.setOnClickListener {
+            createNotificationWithClickAction()
         }
     }
 
@@ -91,6 +97,24 @@ class MainActivity : AppCompatActivity() {
             .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
 
         createNotification(3, builder)
+    }
+
+    fun createNotificationWithClickAction(){
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        val builder = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
+            .setContentTitle("Notification with click action")
+            .setContentText("New notification with great click action")
+            .setSmallIcon(R.drawable.notification_icon)
+            .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+
+        createNotification(4, builder)
     }
 
     fun createNotification(id: Int, builder: NotificationCompat.Builder){
