@@ -17,13 +17,13 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.HandlerThread
 import android.support.annotation.RequiresApi
 
 
 class MainActivity : AppCompatActivity() {
 
-    val CHANNEL_ID = "CHANNEL_ID"
-
+    private val CHANNEL_ID = "CHANNEL_ID"
 
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +59,13 @@ class MainActivity : AppCompatActivity() {
         expandable_notification.setOnClickListener {
             createExpandableNotification()
         }
+
+        progress_bar_notification.setOnClickListener {
+            createProgressBarNotification()
+        }
     }
 
+    // Creates a standard notification
     fun createNormalNotification(){
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.notification_icon)
@@ -71,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         createNotification(0, builder)
     }
 
+    // Creates a headup notification
     fun createHeadsUpNotification(){
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.notification_icon)
@@ -83,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         createNotification(1, builder)
     }
 
+    // Create a notification which will be visible on the lockscreen
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun createLockScreenNotification(){
         val publicBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -102,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         createNotification(2, builder)
     }
 
+    // Create a notification which shows a badged on newer android versions
     fun createBadgedNotification(){
         val builder = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
             .setContentTitle("Badged Notification")
@@ -112,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         createNotification(3, builder)
     }
 
+    // Create a notification with a click event
     fun createNotificationWithClickAction(){
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -130,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         createNotification(4, builder)
     }
 
+    // Create a notification with an action button
     fun createNotificationWithActionButtons(){
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -148,6 +158,7 @@ class MainActivity : AppCompatActivity() {
         createNotification(5, builder)
     }
 
+    // Create a notification that can be expanded for more information
     fun createExpandableNotification(){
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.notification_icon)
 
@@ -168,14 +179,42 @@ class MainActivity : AppCompatActivity() {
         createNotification(6, builder)
     }
 
+    // Create a notification with a simple progress bar
+    fun createProgressBarNotification(){
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.notification_icon)
+            .setContentTitle("Simple progress bar notification")
+            .setContentText("Simple notification with a progress bar ")
 
+        // Progress values
+        val PROGRESS_MAX = 100
+        val PROGRESS_CURRENT = 0
 
+        NotificationManagerCompat.from(this).apply {
+            // Sets the initial progress to 0
+            builder.setProgress(PROGRESS_MAX, PROGRESS_CURRENT, false)
+            notify(7 , builder.build())
+
+            for(i in 0 until 100){
+                builder.setProgress(PROGRESS_MAX, i, false)
+                HandlerThread.sleep(100)
+            }
+
+            // Updates the notification when the progress is done
+            builder.setContentText("Download complete")
+                .setProgress(0, 0, false)
+            notify(7, builder.build())
+        }
+    }
+
+    // Creates the notification and displays it
     fun createNotification(id: Int, builder: NotificationCompat.Builder){
         with(NotificationManagerCompat.from(this)) {
             notify(0, builder.build())
         }
     }
 
+    // Create the notification channel
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
