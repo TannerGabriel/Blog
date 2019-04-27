@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity() {
     // Creates the notification and displays it
     fun createNotification(id: Int, builder: NotificationCompat.Builder){
         with(NotificationManagerCompat.from(this)) {
-            notify(0, builder.build())
+            notify(id, builder.build())
         }
     }
 

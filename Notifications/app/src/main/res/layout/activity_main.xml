@@ -67,7 +67,8 @@
             android:id="@+id/expandable_notification"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp" android:layout_marginBottom="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"/>
 
     <Button
