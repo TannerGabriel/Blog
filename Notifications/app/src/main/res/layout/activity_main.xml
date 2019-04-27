@@ -80,6 +80,16 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="8dp"/>
+
+    <Button
+            android:text="group notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/group_notification"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"/>
 </LinearLayout>

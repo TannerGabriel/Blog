@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
         progress_bar_notification.setOnClickListener {
             createProgressBarNotification()
         }
+
+        group_notification.setOnClickListener {
+            createGroupNotification()
+        }
     }
 
     // Creates a standard notification
@@ -205,6 +209,35 @@ class MainActivity : AppCompatActivity() {
                 .setProgress(0, 0, false)
             notify(7, builder.build())
         }
+    }
+
+    val GROUP_KEY = "com.android.example.KEY"
+
+    fun createGroupNotification(){
+        val groupBuilderOne = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
+            .setSmallIcon(R.drawable.notification_icon)
+            .setContentTitle("Simple group notification")
+            .setContentText("Simple notification group")
+            .setGroup(GROUP_KEY)
+
+        val groupBuilderTwo = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
+            .setSmallIcon(R.drawable.notification_icon)
+            .setContentTitle("Second simple group notification")
+            .setContentText("Simple notification group")
+            .setGroup(GROUP_KEY)
+
+        // For older versions than 7.0
+        val summaryNotification = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
+            .setContentTitle("Notification group summary")
+            .setContentText("Notification group summary")
+            .setSmallIcon(R.drawable.notification_icon)
+            .setGroup(GROUP_KEY)
+            .setGroupSummary(true)
+
+
+        createNotification(8, groupBuilderOne)
+        createNotification(9, groupBuilderTwo)
+        createNotification(10, summaryNotification)
     }
 
     // Creates the notification and displays it
