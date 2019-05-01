@@ -8,7 +8,7 @@
             android:id="@+id/notification_expanded_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Expended notification"
             style="@style/TextAppearance.Compat.Notification.Title" />
 
     <TextView

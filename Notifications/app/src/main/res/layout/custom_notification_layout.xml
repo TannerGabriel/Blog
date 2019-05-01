@@ -8,14 +8,12 @@
             android:id="@+id/notification_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
             style="@style/TextAppearance.Compat.Notification.Title" />
 
     <TextView
             android:id="@+id/notification_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Expand for more information"
             style="@style/TextAppearance.Compat.Notification.Info" />
 
 </LinearLayout>

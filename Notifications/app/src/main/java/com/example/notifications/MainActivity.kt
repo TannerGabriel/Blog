@@ -250,6 +250,9 @@ class MainActivity : AppCompatActivity() {
         val notificationLayout = RemoteViews(packageName, R.layout.custom_notification_layout)
         val notificationLayoutExpanded = RemoteViews(packageName, R.layout.custom_notification_expended_layout)
 
+        notificationLayout.setTextViewText(R.id.notification_title, "Title")
+        notificationLayout.setTextViewText(R.id.notification_info, "Expand for more information")
+
         // Apply the layouts to the notification
         val customNotification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.notification_icon)
