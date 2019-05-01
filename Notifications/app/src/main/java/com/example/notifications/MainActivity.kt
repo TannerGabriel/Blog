@@ -218,6 +218,7 @@ class MainActivity : AppCompatActivity() {
 
     val GROUP_KEY = "com.android.example.KEY"
 
+    // Create a simple group notification
     fun createGroupNotification(){
         val groupBuilderOne = NotificationCompat.Builder(this@MainActivity, CHANNEL_ID)
             .setSmallIcon(R.drawable.notification_icon)
