@@ -19,6 +19,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.HandlerThread
 import android.support.annotation.RequiresApi
+import android.widget.RemoteViews
 
 
 class MainActivity : AppCompatActivity() {
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity() {
 
         group_notification.setOnClickListener {
             createGroupNotification()
+        }
+
+        custom_notification.setOnClickListener {
+            createCustomNotification()
         }
     }
 
@@ -238,6 +243,21 @@ class MainActivity : AppCompatActivity() {
         createNotification(8, groupBuilderOne)
         createNotification(9, groupBuilderTwo)
         createNotification(10, summaryNotification)
+    }
+
+    fun createCustomNotification(){
+        // Get the layouts to use in the custom notification
+        val notificationLayout = RemoteViews(packageName, R.layout.custom_notification_layout)
+        val notificationLayoutExpanded = RemoteViews(packageName, R.layout.custom_notification_expended_layout)
+
+        // Apply the layouts to the notification
+        val customNotification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.notification_icon)
+            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+            .setCustomContentView(notificationLayout)
+            .setCustomBigContentView(notificationLayoutExpanded)
+
+        createNotification(11, customNotification)
     }
 
     // Creates the notification and displays it
