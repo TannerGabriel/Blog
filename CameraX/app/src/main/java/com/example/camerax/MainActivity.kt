@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.util.Rational
+import android.util.Size
 import android.view.TextureView
 import androidx.camera.core.*
 import androidx.appcompat.app.AppCompatActivity
@@ -32,9 +33,9 @@ class MainActivity : AppCompatActivity() {
         val previewConfig = PreviewConfig.Builder().build()
         val preview = Preview(previewConfig)
 
-        val imageCaptureConfig = ImageCaptureConfig.Builder()
+        var imageCaptureConfig = ImageCaptureConfig.Builder()
             .setTargetRotation(windowManager.defaultDisplay.rotation)
-            //.setLensFacing(CameraX.LensFacing.FRONT)
+            .setLensFacing(CameraX.LensFacing.BACK)
             .setFlashMode(FlashMode.ON)
             .build()
 
@@ -64,6 +65,12 @@ class MainActivity : AppCompatActivity() {
                         println("Successfully saved image")
                     }
                 })
+        }
+
+        fab_flash.setOnClickListener {
+            val flashMode = imageCapture.flashMode
+            if(flashMode == FlashMode.ON) imageCapture.flashMode = FlashMode.OFF
+            else imageCapture.flashMode = FlashMode.ON
         }
     }
 
