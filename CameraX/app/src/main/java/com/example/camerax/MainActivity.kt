@@ -25,35 +25,17 @@ class MainActivity : AppCompatActivity() {
     val filename = "test.png"
     val sd = Environment.getExternalStorageDirectory()
     val dest = File(sd, filename)
+    private var lensFacing = CameraX.LensFacing.BACK
+    private var imageCapture: ImageCapture? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val previewConfig = PreviewConfig.Builder().build()
-        val preview = Preview(previewConfig)
-
-        var imageCaptureConfig = ImageCaptureConfig.Builder()
-            .setTargetRotation(windowManager.defaultDisplay.rotation)
-            .setLensFacing(CameraX.LensFacing.BACK)
-            .setFlashMode(FlashMode.ON)
-            .build()
-
-        val imageCapture = ImageCapture(imageCaptureConfig)
-
-
-        val textureView: TextureView = findViewById(R.id.view_finder)
-
-        // The output data-handling is configured in a listener.
-        preview.setOnPreviewOutputUpdateListener { previewOutput ->
-            textureView.surfaceTexture = previewOutput.surfaceTexture
-        }
-
-        // The use case is bound to an Android Lifecycle with the following code.
-        CameraX.bindToLifecycle(this as LifecycleOwner, imageCapture, preview)
+        bindCamera()
 
         fab_camera.setOnClickListener {
-            imageCapture.takePicture(dest,
+            imageCapture?.takePicture(dest,
                 object : ImageCapture.OnImageSavedListener {
                     override fun onError(error: ImageCapture.UseCaseError,
                                          message: String, exc: Throwable?) {
@@ -68,9 +50,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         fab_flash.setOnClickListener {
-            val flashMode = imageCapture.flashMode
-            if(flashMode == FlashMode.ON) imageCapture.flashMode = FlashMode.OFF
-            else imageCapture.flashMode = FlashMode.ON
+            val flashMode = imageCapture?.flashMode
+            if(flashMode == FlashMode.ON) imageCapture?.flashMode = FlashMode.OFF
+            else imageCapture?.flashMode = FlashMode.ON
+        }
+
+        fab_switch_camera.setOnClickListener {
+            lensFacing = if (CameraX.LensFacing.FRONT == lensFacing) {
+                CameraX.LensFacing.BACK
+            } else {
+                CameraX.LensFacing.FRONT
+            }
+            bindCamera()
         }
     }
 
@@ -83,6 +74,33 @@ class MainActivity : AppCompatActivity() {
 
     fun requestPermission(){
         ActivityCompat.requestPermissions(this, permissions,0)
+    }
+
+    private fun bindCamera(){
+        CameraX.unbindAll()
+
+        val previewConfig = PreviewConfig.Builder()
+            .setLensFacing(lensFacing)
+
+        val preview = Preview(previewConfig.build())
+
+        var imageCaptureConfig = ImageCaptureConfig.Builder()
+            .setTargetRotation(windowManager.defaultDisplay.rotation)
+            .setLensFacing(lensFacing)
+            .setFlashMode(FlashMode.ON)
+
+        imageCapture = ImageCapture(imageCaptureConfig.build())
+
+        val textureView: TextureView = findViewById(R.id.view_finder)
+
+        // The output data-handling is configured in a listener.
+        preview.setOnPreviewOutputUpdateListener { previewOutput ->
+            textureView.surfaceTexture = previewOutput.surfaceTexture
+        }
+
+
+        // The use case is bound to an Android Lifecycle with the following code.
+        CameraX.bindToLifecycle(this as LifecycleOwner, imageCapture, preview)
     }
 
     override fun onStart() {
