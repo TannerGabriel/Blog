@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.util.Rational
 import android.view.TextureView
 import androidx.camera.core.*
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         val imageCaptureConfig = ImageCaptureConfig.Builder()
             .setTargetRotation(windowManager.defaultDisplay.rotation)
+            //.setLensFacing(CameraX.LensFacing.FRONT)
+            .setFlashMode(FlashMode.ON)
             .build()
 
         val imageCapture = ImageCapture(imageCaptureConfig)
