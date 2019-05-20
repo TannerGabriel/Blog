@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Request all permissions
      */
-    fun requestPermission(){
+    private fun requestPermission(){
         ActivityCompat.requestPermissions(this, permissions,0)
     }
 
