@@ -1,0 +1,37 @@
+{
+  "entries": [
+    "components\\app-home\\app-home.js",
+    "components\\sample-component\\sample-component.js",
+    "components\\app-profile\\app-profile.js",
+    "components\\parent-component\\parent-component.js",
+    "components\\embedded-component\\embedded-component.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "1.0.0-beta.8",
+    "typescriptVersion": "3.5.1"
+  },
+  "collections": [
+    {
+      "name": "@stencil/router",
+      "tags": [
+        "stencil-async-content",
+        "stencil-route",
+        "stencil-route-link",
+        "stencil-route-switch",
+        "stencil-route-title",
+        "stencil-router",
+        "stencil-router-prompt",
+        "stencil-router-redirect"
+      ]
+    },
+    {
+      "name": "@stencil/state-tunnel",
+      "tags": [
+        "context-consumer"
+      ]
+    }
+  ],
+  "bundles": [],
+  "global": "global\\app.js"
+}

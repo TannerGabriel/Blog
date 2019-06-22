@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stencil Starter App</title>
+  <meta name="Description" content="Welcome to the Stencil App Starter. You can use this starter to build entire apps all with web components using Stencil!">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#16161d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="x-ua-compatible" content="IE=Edge">
+  <script type="module" src="/build/app.esm.js"></script>
+  <script type="module" src="/build/sample-component.esm.js"></script>
+  <script nomodule src="/build/sample-component.js"></script>
+</head>
+<body>
+  <sample-component text="Test"></sample-component>
+  <button id="click">Click</button>
+
+  <script>
+    const component = document.querySelector('sample-component')
+    const button = document.querySelector('#click')
+    button.addEventListener('click', () => {
+      console.log('Hello world')
+      const state = component.getState()
+      console.log(state)
+    })
+  </script>
+</body>
+</html>

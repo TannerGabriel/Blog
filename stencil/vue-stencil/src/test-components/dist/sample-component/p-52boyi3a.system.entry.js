@@ -1,0 +1,1 @@
+System.register(["./p-052a4994.system.js"],function(t,e){"use strict";var n,r;return{setters:[function(t){n=t.d;r=t.f}],execute:function(){var e=function(){function t(t){n(this,t);this.text="Hello World"}t.prototype.render=function(){return r("div",null,this.text)};return t}();t("embedded_component",e)}}});

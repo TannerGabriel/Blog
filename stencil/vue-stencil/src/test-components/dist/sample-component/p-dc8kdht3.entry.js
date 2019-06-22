@@ -1,0 +1,1 @@
+import{d as t,f as e}from"./p-6b891a11.js";class r{constructor(e){t(this,e),this.text="Hello World"}render(){return e("div",null,this.text)}}export{r as embedded_component};

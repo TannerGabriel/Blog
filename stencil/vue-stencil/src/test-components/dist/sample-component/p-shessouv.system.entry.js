@@ -1,0 +1,1 @@
+System.register(["./p-052a4994.system.js"],function(t,e){"use strict";var n,r;return{setters:[function(t){n=t.d;r=t.f}],execute:function(){var e=function(){function t(t){n(this,t)}t.prototype.render=function(){return r("div",null,r("embedded-component",{text:"Hello Stencil"}),r("sample-component",{text:"Test"}))};return t}();t("parent_component",e)}}});
