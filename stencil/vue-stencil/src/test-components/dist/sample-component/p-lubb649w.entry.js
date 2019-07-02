@@ -1,1 +1,0 @@
-import{d as e,f as t}from"./p-6b891a11.js";class n{constructor(t){e(this,t)}render(){return t("div",null,t("embedded-component",{text:"Hello Stencil"}),t("sample-component",{text:"Test"}))}}export{n as parent_component};
