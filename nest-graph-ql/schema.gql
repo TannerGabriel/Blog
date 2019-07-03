@@ -3,6 +3,24 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input ItemInput {
+  title: String!
+  price: Int!
+  description: String!
+}
+
+type ItemType {
+  id: ID!
+  title: String!
+  price: Int!
+  description: String!
+}
+
+type Mutation {
+  createItem(input: ItemInput!): ItemType!
+}
+
 type Query {
+  items: [ItemType!]!
   hello: String!
 }
