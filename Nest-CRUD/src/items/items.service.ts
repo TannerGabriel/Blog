@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Item } from './interfaces/item.interface';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { CreateItemDto } from './dto/create-item.dto';
 
 @Injectable()
 export class ItemsService {
@@ -15,7 +16,7 @@ export class ItemsService {
     return await this.itemModel.findOne({ _id: id });
   }
 
-  async create(item: Item): Promise<Item> {
+  async create(item: CreateItemDto): Promise<Item> {
     const newItem = new this.itemModel(item);
     return await newItem.save();
   }
