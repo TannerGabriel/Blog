@@ -17,4 +17,16 @@ export class ItemsService {
     async findAll(): Promise<Item[]> {
         return await this.itemModel.find().exec();
     }
+
+    async findOne(id: string): Promise<Item> {
+        return await this.itemModel.findOne({ _id: id });
+    }
+
+    async delete(id: string): Promise<Item> {
+        return await this.itemModel.findByIdAndRemove(id);
+    }
+    
+    async update(id: string, item: Item): Promise<Item> {
+        return await this.itemModel.findByIdAndUpdate(id, item, { new: true });
+    }
 }

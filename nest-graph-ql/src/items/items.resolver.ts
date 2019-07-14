@@ -19,6 +19,16 @@ export class ItemsResolver {
     return this.itemsService.create(input);
   }
 
+  @Mutation(() => ItemType)
+  async updateItem(@Args('id') id: string, @Args('input') input: ItemInput) {
+    return this.itemsService.update(id, input);
+  }
+
+  @Mutation(() => ItemType)
+  async deleteItem(@Args('id') id: string) {
+    return this.itemsService.delete(id);
+  }
+
   @Query(() => String)
   async hello() {
     return 'hello';

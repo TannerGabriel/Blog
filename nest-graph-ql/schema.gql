@@ -18,6 +18,8 @@ type ItemType {
 
 type Mutation {
   createItem(input: ItemInput!): ItemType!
+  updateItem(input: ItemInput!, id: String!): ItemType!
+  deleteItem(id: String!): ItemType!
 }
 
 type Query {
