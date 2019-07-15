@@ -23,7 +23,7 @@
                         <div class="card">
                             <div id="messages" class="card-block">
                                 <ul>
-                                    <li v-for="message of messages">{{ message }}</li>
+                                    <li v-for="message of messages">{{ message.name }}: {{ message.text }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -38,24 +38,31 @@
 
 
     <script>
-        var app = new Vue({
+        const app = new Vue({
             el: '#app',
             data: {
                 title: 'Nestjs Websockets Chat',
                 name: '',
                 text: '',
-                messages: ['test', 'test2'],
+                messages: [],
                 socket: null
             },
             methods: {
                 sendMessage() {
-                    console.log('Send')
-                    this.socket.emit('msgToServer', this.text)
-                    this.text = ''
+                    if(this.validateInput()) {
+                        const message = {
+                            name: this.name,
+                            text: this.text
+                        }
+                        this.socket.emit('msgToServer', message)
+                        this.text = ''
+                    }
                 },
                 receivedMessage(message) {
-                    console.log(`Received: ${message}`)
                     this.messages.push(message)
+                },
+                validateInput() {
+                    return this.name.length > 0 && this.text.length > 0
                 }
             },
             created() {
