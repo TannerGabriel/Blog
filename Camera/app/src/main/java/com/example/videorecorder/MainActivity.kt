@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         fotoapparatState = FotoapparatState.OFF
 
         fab_camera.setOnClickListener {
+            print("Taking photo")
+            val test = "Test233"
             takePhoto()
         }
 
