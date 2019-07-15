@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Nestjs SocketIO</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -36,42 +36,6 @@
             </div>
     </div>
 
-
-    <script>
-        const app = new Vue({
-            el: '#app',
-            data: {
-                title: 'Nestjs Websockets Chat',
-                name: '',
-                text: '',
-                messages: [],
-                socket: null
-            },
-            methods: {
-                sendMessage() {
-                    if(this.validateInput()) {
-                        const message = {
-                            name: this.name,
-                            text: this.text
-                        }
-                        this.socket.emit('msgToServer', message)
-                        this.text = ''
-                    }
-                },
-                receivedMessage(message) {
-                    this.messages.push(message)
-                },
-                validateInput() {
-                    return this.name.length > 0 && this.text.length > 0
-                }
-            },
-            created() {
-                this.socket = io('http://localhost:3000')
-                this.socket.on('msgToClient', (message) => {
-                    this.receivedMessage(message)
-                })
-            }
-        })
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
