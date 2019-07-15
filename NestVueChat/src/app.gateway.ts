@@ -18,8 +18,8 @@ export class AppGateway
   private logger: Logger = new Logger('AppGateway');
 
   @SubscribeMessage('msgToServer')
-  handleMessage(client: Socket, payload: string): WsResponse<string> {
-    return { event: 'msgToClient', data: payload };
+  handleMessage(client: Socket, payload: string): void {
+    this.server.emit('msgToClient', payload);
   }
 
   afterInit(server: Server) {

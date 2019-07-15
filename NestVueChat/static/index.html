@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    
 </head>
 <body>
     <div id="app" class="container">
@@ -31,7 +30,7 @@
                         <br>
                         <textarea id="textarea" class="form-control" v-model="text" placeholder="Enter message..."></textarea>
                         <br>
-                        <button id="send" class="btn">Send</button>
+                        <button id="send" class="btn" @click.prevent="sendMessage">Send</button>
                     </div>
                 </div>
             </div>
@@ -45,8 +44,26 @@
                 title: 'Nestjs Websockets Chat',
                 name: '',
                 text: '',
-                messages: ['test', 'test2']
+                messages: ['test', 'test2'],
+                socket: null
             },
+            methods: {
+                sendMessage() {
+                    console.log('Send')
+                    this.socket.emit('msgToServer', this.text)
+                    this.text = ''
+                },
+                receivedMessage(message) {
+                    console.log(`Received: ${message}`)
+                    this.messages.push(message)
+                }
+            },
+            created() {
+                this.socket = io('http://localhost:3000')
+                this.socket.on('msgToClient', (message) => {
+                    this.receivedMessage(message)
+                })
+            }
         })
     </script>
 </body>
