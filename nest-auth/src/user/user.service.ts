@@ -22,6 +22,7 @@ export class UserService {
     async findById(ID: number): Promise<User> {
         return await this.userModel.findById(ID).exec();
     }
+
     async create(createUserDto: CreateUserDto): Promise<User> {
         const createdUser = new this.userModel(createUserDto);
         return await createdUser.save();
@@ -37,12 +38,13 @@ export class UserService {
         await this.userModel.findByIdAndUpdate(ID, newValue).exec();
         return await this.userModel.findById(ID).exec();
     }
+
     async delete(ID: number): Promise<string> {
         try {
             await this.userModel.findByIdAndRemove(ID).exec();
             return 'The user has been deleted';
-        } catch (err) {
-            debug(err);
+        } catch (error) {
+            debug(error);
             return 'The user could not be deleted';
         }
     }
