@@ -1,15 +1,14 @@
 import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, PassportLocalModel } from 'mongoose';
+import { Model } from 'mongoose';
 import { User } from '../types/user';
-import { CreateUserDto } from './dto/create-user.dto';
-import { debug } from 'util';
-import { LoginUserDto } from './dto/login-user.dto';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { LoginUserDto } from '../user/dto/login-user.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
-    constructor(@InjectModel('User') private readonly userModel: PassportLocalModel<User>) {}
+    constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
     sanitizeUser(user: User) {
         const sanitized = user.toObject();
