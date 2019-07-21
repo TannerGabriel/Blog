@@ -33,5 +33,4 @@ export class ItemsResolver {
   async hello() {
     return 'hello';
   }
-
 }

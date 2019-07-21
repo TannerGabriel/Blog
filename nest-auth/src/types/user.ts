@@ -1,8 +1,6 @@
-import { Document, PassportLocalDocument } from 'mongoose';
+import { Document } from 'mongoose';
 
-export interface User extends PassportLocalDocument {
-    readonly firstName: string;
-    readonly lastName: string;
+export interface User extends Document {
     readonly email: string;
     readonly password: string;
 }
