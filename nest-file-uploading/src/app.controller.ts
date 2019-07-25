@@ -1,6 +1,8 @@
 import { Controller, Get, Post, UseInterceptors, UploadedFile, UploadedFiles, Res, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 
 @Controller()
 export class AppController {
@@ -12,9 +14,19 @@ export class AppController {
   }
 
   @Post()
-  @UseInterceptors(FilesInterceptor('image'))
+  @UseInterceptors(FileInterceptor('image', {
+    storage: diskStorage({
+      destination: './files'
+      , filename: (req, file, cb) => {
+        const name = file.originalname.split('.')[0];
+        const fileExtName = extname(file.originalname);
+        const randomName = Array(4).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('');
+        cb(null, `${name}-${randomName}${fileExtName}`);
+      },
+    }),
+  }))
   UploadedFile(@UploadedFiles() file) {
-    console.log(file);
+    // console.log(file);
   }
 
   @Get(':imgpath')
