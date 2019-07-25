@@ -25,12 +25,16 @@ export class AppController {
       },
     }),
   }))
-  UploadedFile(@UploadedFiles() file) {
-    // console.log(file);
+  async uploadedFile(@UploadedFile() file) {
+    const response = {
+      originalname: file.originalname,
+      filename: file.filename,
+    };
+    return response;
   }
 
   @Get(':imgpath')
   seeUploadedFile(@Param('imgpath') image, @Res() res) {
-    return res.sendFile(image, {root: 'files'});
+    return res.sendFile(image, {root: './files'});
   }
 }
