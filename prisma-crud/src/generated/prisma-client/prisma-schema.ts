@@ -53,7 +53,6 @@ type Post {
   published: Boolean!
   title: String!
   content: String!
-  user: User
 }
 
 type PostConnection {
@@ -63,19 +62,6 @@ type PostConnection {
 }
 
 input PostCreateInput {
-  id: ID
-  published: Boolean
-  title: String!
-  content: String!
-  user: UserCreateOneWithoutPostsInput
-}
-
-input PostCreateManyWithoutUserInput {
-  create: [PostCreateWithoutUserInput!]
-  connect: [PostWhereUniqueInput!]
-}
-
-input PostCreateWithoutUserInput {
   id: ID
   published: Boolean
   title: String!
@@ -105,56 +91,6 @@ type PostPreviousValues {
   content: String!
 }
 
-input PostScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  published: Boolean
-  published_not: Boolean
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  AND: [PostScalarWhereInput!]
-  OR: [PostScalarWhereInput!]
-  NOT: [PostScalarWhereInput!]
-}
-
 type PostSubscriptionPayload {
   mutation: MutationType!
   node: Post
@@ -177,53 +113,12 @@ input PostUpdateInput {
   published: Boolean
   title: String
   content: String
-  user: UserUpdateOneWithoutPostsInput
-}
-
-input PostUpdateManyDataInput {
-  published: Boolean
-  title: String
-  content: String
 }
 
 input PostUpdateManyMutationInput {
   published: Boolean
   title: String
   content: String
-}
-
-input PostUpdateManyWithoutUserInput {
-  create: [PostCreateWithoutUserInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
-}
-
-input PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput!
-  data: PostUpdateManyDataInput!
-}
-
-input PostUpdateWithoutUserDataInput {
-  published: Boolean
-  title: String
-  content: String
-}
-
-input PostUpdateWithWhereUniqueWithoutUserInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutUserDataInput!
-}
-
-input PostUpsertWithWhereUniqueWithoutUserInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutUserDataInput!
-  create: PostCreateWithoutUserInput!
 }
 
 input PostWhereInput {
@@ -271,7 +166,6 @@ input PostWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
-  user: UserWhereInput
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
@@ -300,7 +194,6 @@ type User {
   id: ID!
   email: String!
   password: String!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
 }
 
 type UserConnection {
@@ -310,18 +203,6 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  id: ID
-  email: String!
-  password: String!
-  posts: PostCreateManyWithoutUserInput
-}
-
-input UserCreateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutPostsInput {
   id: ID
   email: String!
   password: String!
@@ -368,31 +249,11 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   email: String
   password: String
-  posts: PostUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
   password: String
-}
-
-input UserUpdateOneWithoutPostsInput {
-  create: UserCreateWithoutPostsInput
-  update: UserUpdateWithoutPostsDataInput
-  upsert: UserUpsertWithoutPostsInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateWithoutPostsDataInput {
-  email: String
-  password: String
-}
-
-input UserUpsertWithoutPostsInput {
-  update: UserUpdateWithoutPostsDataInput!
-  create: UserCreateWithoutPostsInput!
 }
 
 input UserWhereInput {
@@ -438,9 +299,6 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

@@ -16,12 +16,10 @@ type Post {
   published: Boolean!
   title: String!
   content: String!
-  user: User
 }
 
 type User {
   id: ID!
   email: String!
   password: String!
-  posts: [Post!]!
 }
