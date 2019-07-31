@@ -15,6 +15,9 @@ const resolvers = {
     },
   },
   Mutation: {
+    createUser(parent, { email, password }, context: Context){
+      return context.prisma.createUser({ email, password })
+    },
     createDraft(parent, { title, content }, context: Context) {
       return context.prisma.createPost({ title, content })
     },

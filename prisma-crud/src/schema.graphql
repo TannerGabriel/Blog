@@ -5,6 +5,7 @@ type Query {
 }
 
 type Mutation {
+  createUser(email: String!, password: String!): User
   createDraft(title: String!, content: String): Post
   deletePost(id: ID!): Post
   publish(id: ID!): Post
@@ -15,4 +16,12 @@ type Post {
   published: Boolean!
   title: String!
   content: String!
+  user: User
+}
+
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  posts: [Post!]!
 }
