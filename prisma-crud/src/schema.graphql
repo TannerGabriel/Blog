@@ -1,25 +1,26 @@
 type Query {
-  feed: [Post!]!
-  drafts: [Post!]!
-  post(id: ID!): Post
+	feed: [Post!]!
+	drafts: [Post!]!
+	post(id: ID!): Post
+	users: [User!]!
 }
 
 type Mutation {
-  createUser(email: String!, password: String!): User
-  createDraft(title: String!, content: String): Post
-  deletePost(id: ID!): Post
-  publish(id: ID!): Post
+	createUser(email: String!, password: String!): User
+	createDraft(title: String!, content: String): Post
+	deletePost(id: ID!): Post
+	publish(id: ID!): Post
 }
 
 type Post {
-  id: ID!
-  published: Boolean!
-  title: String!
-  content: String!
+	id: ID!
+	published: Boolean!
+	title: String!
+	content: String!
 }
 
 type User {
-  id: ID!
-  email: String!
-  password: String!
+	id: ID!
+	email: String!
+	password: String!
 }

@@ -9,4 +9,5 @@ type User {
   id: ID! @id
   email: String! @unique
   password: String!
+  
 }
