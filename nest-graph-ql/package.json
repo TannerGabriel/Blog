@@ -66,5 +66,11 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "Nestjs",
+    "Typescript",
+    "GraphQL",
+    "Nestjs GraphQL"
+  ]
 }

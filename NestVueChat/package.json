@@ -61,5 +61,13 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "Nestjs",
+    "Typescript",
+    "Chat application",
+    "Nestjs Chat",
+    "Websockets",
+    "Nestjs Websockets"
+  ]
 }

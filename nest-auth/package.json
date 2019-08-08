@@ -69,5 +69,12 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "Nestjs",
+    "Typescript",
+    "Authentification",
+    "Passport",
+    "JWT"
+  ]
 }

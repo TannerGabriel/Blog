@@ -58,5 +58,11 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "Nestjs",
+    "Typescript",
+    "File uploading",
+    "Node"
+  ]
 }

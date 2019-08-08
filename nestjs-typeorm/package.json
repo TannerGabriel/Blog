@@ -61,5 +61,11 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "Nestjs",
+    "Typescript",
+    "Typeorm",
+    "Nestjs typeorm"
+  ]
 }

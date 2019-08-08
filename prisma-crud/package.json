@@ -12,5 +12,11 @@
     "prisma": "1.34.3",
     "ts-node": "7.0.1",
     "typescript": "3.2.2"
-  }
+  },
+  "keywords": [
+    "Prisma",
+    "Typescript",
+    "CRUD",
+    "Prisma Typescript"
+  ]
 }

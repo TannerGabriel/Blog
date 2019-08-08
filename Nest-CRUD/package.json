@@ -60,5 +60,11 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "Nestjs",
+    "Typescript",
+    "CRUD",
+    "MongoDB"
+  ]
 }
