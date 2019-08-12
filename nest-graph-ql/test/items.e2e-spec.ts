@@ -71,7 +71,6 @@ describe('AppController (e2e)', () => {
       })
       .expect(({ body }) => {
         const data = body.data.createItem;
-        console.log(data.id);
         this.id = data.id;
         expect(data.title).toBe(item.title);
         expect(data.description).toBe(item.description);
@@ -88,11 +87,18 @@ describe('AppController (e2e)', () => {
         variables: {},
         query: '{items{title, price, description, id}}',
       })
-      .expect(({ body }) => {})
+      .expect(({ body }) => {
+        const data = body.data.items;
+        const itemResult = data[0];
+        expect(data.length).toBeGreaterThan(0);
+        expect(itemResult.title).toBe(item.title);
+        expect(itemResult.description).toBe(item.description);
+        expect(itemResult.price).toBe(item.price);
+      })
       .expect(200);
   });
 
-  it('createItem', () => {
+  it('updateItem', () => {
     const updateItemQuery = `
     mutation {
       updateItem(id: "${this.id}", input: ${updateItemObject}) {
@@ -103,8 +109,6 @@ describe('AppController (e2e)', () => {
       }
     }`;
 
-    console.log(updateItemQuery);
-
     return request(app.getHttpServer())
       .post('/graphql')
       .send({
@@ -113,8 +117,34 @@ describe('AppController (e2e)', () => {
         query: updateItemQuery,
       })
       .expect(({ body }) => {
-        console.log(body);
         const data = body.data.updateItem;
+        expect(data.title).toBe(updatedItem.title);
+        expect(data.description).toBe(updatedItem.description);
+        expect(data.price).toBe(updatedItem.price);
+      })
+      .expect(200);
+  });
+
+  it('deleteItem', () => {
+    const deleteItemQuery = `
+      mutation {
+        deleteItem(id: "${this.id}") {
+          title
+          price
+          description
+          id
+        }
+      }`;
+
+    return request(app.getHttpServer())
+      .post('/graphql')
+      .send({
+        operationName: null,
+        variables: {},
+        query: deleteItemQuery,
+      })
+      .expect(({ body }) => {
+        const data = body.data.deleteItem;
         expect(data.title).toBe(updatedItem.title);
         expect(data.description).toBe(updatedItem.description);
         expect(data.price).toBe(updatedItem.price);
