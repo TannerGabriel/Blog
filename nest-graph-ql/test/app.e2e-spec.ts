@@ -14,6 +14,10 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
+  afterAll(async () => {
+    await app.close();
+  });
+
   it('getItems', () => {
     return request(app.getHttpServer())
       .post('/graphql')
