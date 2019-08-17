@@ -3,13 +3,12 @@ import * as request from 'supertest';
 import { ItemsModule } from '../src/items/items.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ItemType } from '../src/items/dto/create-item.dto';
 import { Item } from '../src/items/interfaces/item.interface';
 
-describe('AppController (e2e)', () => {
+describe('ItemsController (e2e)', () => {
   let app;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         ItemsModule,
