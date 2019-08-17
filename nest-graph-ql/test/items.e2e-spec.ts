@@ -34,7 +34,7 @@ describe('AppController (e2e)', () => {
     description: 'Description of this great item',
   };
 
-  const id: string = '';
+  let id: string = '';
 
   const updatedItem: Item = {
     title: 'Great updated item',
@@ -66,12 +66,11 @@ describe('AppController (e2e)', () => {
       .post('/graphql')
       .send({
         operationName: null,
-        variables: {},
         query: createItemQuery,
       })
       .expect(({ body }) => {
         const data = body.data.createItem;
-        this.id = data.id;
+        id = data.id;
         expect(data.title).toBe(item.title);
         expect(data.description).toBe(item.description);
         expect(data.price).toBe(item.price);
@@ -84,7 +83,6 @@ describe('AppController (e2e)', () => {
       .post('/graphql')
       .send({
         operationName: null,
-        variables: {},
         query: '{items{title, price, description, id}}',
       })
       .expect(({ body }) => {
@@ -101,7 +99,7 @@ describe('AppController (e2e)', () => {
   it('updateItem', () => {
     const updateItemQuery = `
     mutation {
-      updateItem(id: "${this.id}", input: ${updateItemObject}) {
+      updateItem(id: "${id}", input: ${updateItemObject}) {
         title
         price
         description
@@ -113,7 +111,6 @@ describe('AppController (e2e)', () => {
       .post('/graphql')
       .send({
         operationName: null,
-        variables: {},
         query: updateItemQuery,
       })
       .expect(({ body }) => {
@@ -128,7 +125,7 @@ describe('AppController (e2e)', () => {
   it('deleteItem', () => {
     const deleteItemQuery = `
       mutation {
-        deleteItem(id: "${this.id}") {
+        deleteItem(id: "${id}") {
           title
           price
           description
@@ -140,7 +137,6 @@ describe('AppController (e2e)', () => {
       .post('/graphql')
       .send({
         operationName: null,
-        variables: {},
         query: deleteItemQuery,
       })
       .expect(({ body }) => {
