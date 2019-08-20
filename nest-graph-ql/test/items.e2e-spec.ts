@@ -45,10 +45,6 @@ describe('ItemsController (e2e)', () => {
     /\"([^(\")"]+)\":/g,
     '$1:',
   );
-  const updateItemObject = JSON.stringify(updatedItem).replace(
-    /\"([^(\")"]+)\":/g,
-    '$1:',
-  );
 
   const createItemQuery = `
   mutation {
@@ -94,6 +90,11 @@ describe('ItemsController (e2e)', () => {
       })
       .expect(200);
   });
+
+  const updateItemObject = JSON.stringify(updatedItem).replace(
+    /\"([^(\")"]+)\":/g,
+    '$1:',
+  );
 
   it('updateItem', () => {
     const updateItemQuery = `
