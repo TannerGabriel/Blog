@@ -19,9 +19,9 @@ export class AppController {
     FileInterceptor('image', {
       storage: diskStorage({
         destination: './files',
-        filename: editFileName,
+        // filename: editFileName,
       }),
-      fileFilter: imageFileFilter,
+      // fileFilter: imageFileFilter,
     }),
   )
   async uploadedFile(@UploadedFile() file) {
