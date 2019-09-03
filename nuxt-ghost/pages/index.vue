@@ -1,15 +1,19 @@
 <template>
-  <h1>Index</h1>
+  <section>
+    <h1>Index</h1>
+  </section>
 </template>
 
 <script>
-import { ghostAPI } from "@/utils/ghost";
+import { ghostAPI, postIndexFields } from "@/utils/ghost";
 
 export default {
   components: {},
 
   async mounted() {
-    const post = await ghostAPI().posts.browse();
+    const post = await ghostAPI().posts.browse({
+      fields: postIndexFields
+    });
     console.log(post);
   }
 };

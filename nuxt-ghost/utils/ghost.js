@@ -3,7 +3,6 @@ import {
   API_KEY
 } from "../config/constants";
 
-// we have this function accept variables to be accessible to config.js
 const ghost = (url, key) => {
   return new GhostContentAPI({
     url: "http://localhost:2368",
@@ -23,11 +22,10 @@ const postIndexFields = [
   'featured',
   'published_at',
   'custom_excerpt',
-  'excerpt' // excerpt doesn't seem to work in field definition (bug?)
+  'excerpt'
 ]
 
 const ghostAPI = () => {
-  // called as function to make sure env variables are available
   return ghost("http://localhost:2368", API_KEY)
 }
 
