@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@tryghost/content-api": "^1.2.7",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

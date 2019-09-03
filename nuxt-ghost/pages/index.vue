@@ -3,7 +3,14 @@
 </template>
 
 <script>
+import { ghostAPI } from "@/utils/ghost";
+
 export default {
-  components: {}
+  components: {},
+
+  async mounted() {
+    const post = await ghostAPI().posts.browse();
+    console.log(post);
+  }
 };
 </script>
