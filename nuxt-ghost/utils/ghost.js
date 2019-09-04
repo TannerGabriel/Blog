@@ -19,9 +19,8 @@ const postIndexFields = [
   'title',
   'slug',
   'feature_image',
-  'featured',
   'published_at',
-  'custom_excerpt',
+  'html',
   'excerpt'
 ]
 

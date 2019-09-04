@@ -1,19 +1,10 @@
 <template>
-  <v-app>
-    <Toolbar />
+  <section>
     <nuxt />
-  </v-app>
+  </section>
 </template>
 
 <script>
-import Toolbar from "../components/Toolbar.vue";
-
 export default {
-  components: {
-    Toolbar
-  },
-  data() {
-    return {};
-  }
 };
 </script>

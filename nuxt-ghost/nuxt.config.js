@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   mode: 'universal',
   /*
@@ -44,23 +42,11 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [
-    '@nuxtjs/vuetify',
-  ],
   /*
    ** Nuxt.js modules
    */
   modules: [],
-  /*
-   ** vuetify module configuration
-   ** https://github.com/nuxt-community/vuetify-module
-   */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
 
-    }
-  },
   /*
    ** Build configuration
    */

@@ -14,7 +14,5 @@
     "@tryghost/content-api": "^1.2.7",
     "nuxt": "^2.0.0"
   },
-  "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0"
-  }
+  "devDependencies": {}
 }
