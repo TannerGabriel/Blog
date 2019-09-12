@@ -5,8 +5,8 @@ import {
 
 const ghost = (url, key) => {
   return new GhostContentAPI({
-    url: "http://localhost:2368",
-    key: API_KEY,
+    url: url,
+    key: key,
     version: 'v2'
   })
 }

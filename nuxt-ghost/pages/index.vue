@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .blog-post {
   margin: 25px 0;
-  padding: 0 100px;
+  align-content: center;
   width: 100%;
   display: flex;
   justify-content: center;
