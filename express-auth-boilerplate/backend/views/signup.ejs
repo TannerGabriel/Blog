@@ -7,22 +7,53 @@
         <div class="col-sm-6 col-sm-offset-3">
             <h1>Signup</h1>
 
-            <form action="auth/signup" method="post">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" class="form-control" name="email">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-            </form>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input id="email" type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input id="password" type="password" class="form-control" name="password">
+            </div>
+            <button id="signupBtn" class="btn btn-warning btn-lg">Signup</button>
+
             <hr>
             <p>Already have an account? <a href="/login">Login</a></p>
             <p>Or go <a href="/">home</a>.</p>
         </div>
     </div>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- <script src="js/client.js"></script> -->
+<script>
+    document.querySelector('#signupBtn').addEventListener('click', event => {
+        const email = document.querySelector('input#email').value
+        const password = document.querySelector('input#password').value
+
+        if (!validateEmail(email) || password.length <= 4) {
+            alert('Enter a valid email and password')
+            return
+        }
+
+        axios.post('/auth/signup', {
+                email: email,
+                password: password
+            })
+            .then((response) => {
+                console.log(response);
+                window.location.href = '../';
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    })
+
+    function validateEmail(email) {
+        const re =
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+</script>
 
 </html>
