@@ -8,7 +8,7 @@ const port = 3000
 
 mongoose
     .connect(
-        'mongodb://localhost:27017/auth-example', {
+        'mongodb://localhost:27017/authexample', {
             useNewUrlParser: true
         }
     )
