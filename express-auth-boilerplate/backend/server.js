@@ -1,9 +1,6 @@
 const http = require('http')
 const mongoose = require('mongoose')
 const app = require('./app')
-const bodyParser = require('body-parser');
-const cors = require('cors')
-
 const port = 3000
 
 mongoose
@@ -15,8 +12,6 @@ mongoose
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.log(err))
 
-app.use(cors())
-app.use(bodyParser());
 app.set('port', port)
 
 const server = http.createServer(app)

@@ -9,8 +9,14 @@ exports.signup = (req, res) => {
             password: hash,
         })
         user.save().then(() => {
+            const token = jwt.sign({
+                userId: user._id
+            }, 'RANDOM_TOKEN_SECRET', {
+                expiresIn: '24h'
+            })
             res.status(201).json({
                 message: 'Succesfully created user',
+                token: token
             })
         }).catch((error) => {
             res.status(400).json({
@@ -66,13 +72,13 @@ exports.checkAuthState = (req, res, next) => {
     if (token) {
         jwt.verify(token, 'RANDOM_TOKEN_SECRET', (err, decoded) => {
             if (err) {
-                return res.json({
+                return res.status(400).json({
                     success: false,
                     message: 'Token is not valid'
                 });
             } else {
                 req.decoded = decoded;
-                return res.json({
+                return res.status(200).json({
                     success: true,
                     message: 'Token is valid'
                 });
