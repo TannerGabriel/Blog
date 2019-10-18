@@ -2,10 +2,11 @@ const http = require('http')
 const mongoose = require('mongoose')
 const app = require('./app')
 const port = 3000
+require('dotenv').config()
 
 mongoose
     .connect(
-        'mongodb://localhost:27017/authexample', {
+        `mongodb://${process.env.HOST}:27017/authexample`, {
             useNewUrlParser: true
         }
     )
