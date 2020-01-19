@@ -20,10 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    <<
-    << << < HEAD
-    @nestjs / common ": "
-    6.4 .0 ",
+    "@nestjs/common": "6.4.0",
     "@nestjs/core": "6.4.0",
     "@nestjs/graphql": "6.2.4",
     "@nestjs/mongoose": "6.1.2",
@@ -36,23 +33,7 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
     "rxjs": "6.5.2",
-    "type-graphql": "0.17.4" ===
-      === =
-      "@nestjs/common": "6.4.0",
-    "@nestjs/core": "6.4.0",
-    "@nestjs/graphql": "6.2.4",
-    "@nestjs/mongoose": "6.1.2",
-    "@nestjs/platform-express": "6.4.0",
-    "apollo-server-express": "2.7.0-alpha.3",
-    "class-transformer": "0.2.3",
-    "graphql": "14.4.1",
-    "graphql-tools": "4.0.5",
-    "mongoose": "5.6.2",
-    "reflect-metadata": "0.1.13",
-    "rimraf": "2.6.3",
-    "rxjs": "6.5.2",
-    "type-graphql": "0.17.4" >>>
-      >>> > 5 f2a315169dc6d1366b95e8b2cbb470ccbfd0495
+    "type-graphql": "0.17.4"
   },
   "devDependencies": {
     "@nestjs/testing": "6.4.0",
