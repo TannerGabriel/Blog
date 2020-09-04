@@ -33,7 +33,7 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
     "rxjs": "6.5.2",
-    "type-graphql": "0.17.4"
+    "type-graphql": "0.17.6"
   },
   "devDependencies": {
     "@nestjs/testing": "6.4.0",
