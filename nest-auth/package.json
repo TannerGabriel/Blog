@@ -28,7 +28,7 @@
     "bcrypt": "5.0.1",
     "dotenv": "14.3.2",
     "jsonwebtoken": "8.5.1",
-    "mongoose": "6.1.8",
+    "mongoose": "6.4.6",
     "passport": "0.5.2",
     "passport-jwt": "4.0.0",
     "reflect-metadata": "0.1.13",
