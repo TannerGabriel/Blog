@@ -45,7 +45,7 @@
     "@types/supertest": "2.0.11",
     "concurrently": "7.0.0",
     "jest": "27.4.7",
-    "nodemon": "2.0.15",
+    "nodemon": "2.0.20",
     "prettier": "2.5.1",
     "supertest": "6.2.2",
     "ts-jest": "27.1.3",
