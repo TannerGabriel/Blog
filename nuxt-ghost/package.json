@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tryghost/content-api": "1.5.4",
-    "nuxt": "2.15.4"
+    "nuxt": "3.6.0"
   },
   "devDependencies": {}
 }
