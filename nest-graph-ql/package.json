@@ -30,7 +30,7 @@
     "class-validator": "^0.13.2",
     "graphql": "^15.7.2",
     "graphql-tools": "8.2.0",
-    "mongoose": "6.1.8",
+    "mongoose": "6.12.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.2",
