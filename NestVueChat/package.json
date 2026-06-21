@@ -21,16 +21,16 @@
   },
   "dependencies": {
     "@nestjs/common": "8.2.6",
-    "@nestjs/core": "8.2.6",
-    "@nestjs/platform-express": "8.2.6",
-    "@nestjs/platform-socket.io": "8.2.6",
-    "@nestjs/websockets": "8.2.6",
+    "@nestjs/core": "11.1.27",
+    "@nestjs/platform-express": "11.1.27",
+    "@nestjs/platform-socket.io": "11.1.27",
+    "@nestjs/websockets": "11.1.27",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "8.2.6",
+    "@nestjs/testing": "11.1.27",
     "@types/express": "4.17.13",
     "@types/jest": "27.4.0",
     "@types/node": "17.0.12",
